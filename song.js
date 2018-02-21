@@ -1,5 +1,5 @@
 $(function(){
-    $.get('./lyric.json').then(function(object){
+    $.get('lyric.json').then(function(object){
         let {lyric}= object
         let array= lyric.split('\n')//将歌词的每一句分割出来 数组
         let regex= /^\[(.+)\](.*)/

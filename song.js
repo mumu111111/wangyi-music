@@ -1,20 +1,17 @@
 $(function(){
-    $.get('/lyric.json').then(function(object){
-        console.log(object)
+    $.get('./lyric.json').then(function(object){
         let {lyric}= object
-        console.log(lyric)
         let array= lyric.split('\n')//将歌词的每一句分割出来 数组
         let regex= /^\[(.+)\](.*)/
         array= array.map(function(string){// map 遍历
             let matches= string.match(regex)
             if(matches){
                 return {time: matches[1], words: matches[2]}
-                
             }
         })
         let $lyric= $('.lyric')
         array.map(function(object){
-            if(!object){return }
+            if(!object){return } //找不到对象时 return
             let $p= $('<p/>')
             $p.attr('data-time',object.time).text(object.words)
             $p.appendTo($lyric.children('.lines'))
